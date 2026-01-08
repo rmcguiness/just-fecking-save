@@ -219,6 +219,11 @@ export async function POST(request: NextRequest) {
 			});
 		}
 
+		// Filter out positive values when accountType is checking
+		if (accountType === 'checking') {
+			transactions = transactions.filter((t) => t.amount <= 0);
+		}
+
 		const processed = organizeData(transactions, accountType);
 		return NextResponse.json(processed);
 	} catch (error) {
