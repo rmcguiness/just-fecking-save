@@ -310,15 +310,8 @@ export default function ResultsDisplay({ data, processingTime, onReset }: Result
         {/* Processing status */}
         <div className="flex items-center justify-center gap-2 text-gray-600 mb-6">
           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-          <span className="text-sm">Analyzing {data.numberOfTransactions} transactions...</span>
+          <span className="text-sm">Analyzed {data.numberOfTransactions} transactions in {processingTime?.toFixed(1) || '0.0'}s</span>
         </div>
-
-        {/* Processing time */}
-        {processingTime !== null && (
-          <div className="text-center text-gray-500 text-sm mb-6">
-            {processingTime.toFixed(1)}s
-          </div>
-        )}
 
         {/* Chart section */}
         {chartData.length > 0 && (
