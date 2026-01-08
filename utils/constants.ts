@@ -1,0 +1,102 @@
+// Service name mappings for common subscriptions
+export const SERVICE_KEYWORDS: Record<string, string[]> = {
+	Netflix: ['netflix'],
+	Spotify: ['spotify'],
+	PlayStation: ['playstation', 'psn', 'play station'],
+	Discord: ['discord'],
+	'ChatGPT Plus': ['chatgpt', 'openai', 'chat gpt'],
+	Replit: ['replit'],
+	Supabase: ['supabase'],
+	Railway: ['railway'],
+	Coinbase: ['coinbase'],
+	Starbucks: ['starbucks'],
+	'Dunkin Donuts': ['dunkin donuts'],
+	Wawa: ['wawa'],
+	'Chick-fil-A': ['chick-fil-a'],
+	Culvers: ['culvers'],
+	Hardees: ['hardees'],
+	'Jack in the Box': ['jack in the box'],
+	'In-N-Out': ['in-n-out'],
+	'Little Caesars': ['little caesars'],
+	Popeyes: ['popeyes'],
+	Quiznos: ['quiznos'],
+	'Round Table Pizza': ['round table pizza'],
+	Sonic: ['sonic'],
+	Subway: ['subway'],
+	'Taco Bell': ['taco bell'],
+	Wendys: ['wendys'],
+	KFC: ['kfc'],
+	Arbys: ['arbys'],
+};
+
+// Category mappings
+export const CATEGORY_KEYWORDS: Record<string, string[]> = {
+	Streaming: [
+		'netflix',
+		'spotify',
+		'hulu',
+		'disney',
+		'prime',
+		'youtube',
+		'apple tv',
+	],
+	Food: [
+		'mcdonalds',
+		'burger king',
+		'wendys',
+		'subway',
+		'pizza hut',
+		'dominos',
+		'papajohns',
+		'chipotle',
+		'taco bell',
+		'kfc',
+		'arbys',
+		'sonic',
+		'starbucks',
+		"dunkin' donuts",
+		'wawa',
+		'chick-fil-a',
+		'culvers',
+		'hardees',
+		'jack in the box',
+		'in-n-out',
+		'little caesars',
+		"mcdonald's",
+		'popeyes',
+		'quiznos',
+		'round table pizza',
+		'sonic',
+		'subway',
+		'taco bell',
+		'wendys',
+	],
+	Gaming: ['playstation', 'xbox', 'steam', 'nintendo', 'epic games'],
+	Software: ['adobe', 'microsoft', 'office', 'creative cloud'],
+	'Cloud Services': [
+		'aws',
+		'google cloud',
+		'azure',
+		'supabase',
+		'railway',
+		'vercel',
+	],
+	Productivity: ['notion', 'slack', 'dropbox', 'onedrive'],
+	'AI Tools': ['chatgpt', 'openai', 'anthropic', 'claude'],
+	Development: ['github', 'gitlab', 'replit', 'codesandbox'],
+	Communication: ['discord', 'zoom', 'teams'],
+	Crypto: ['coinbase', 'binance', 'kraken', 'gemini', 'crypto'],
+	Other: [],
+};
+
+// File upload limits
+export const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+export const ALLOWED_FILE_TYPES = ['text/csv', 'application/pdf'];
+export const ALLOWED_FILE_EXTENSIONS = ['.csv', '.pdf'];
+
+// Input validation limits
+export const MAX_NAME_LENGTH = 100;
+export const MAX_EMAIL_LENGTH = 254;
+export const MAX_SUBJECT_LENGTH = 200;
+export const MAX_MESSAGE_LENGTH = 5000;
+
