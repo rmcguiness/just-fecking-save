@@ -114,9 +114,8 @@ export default function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${
-                  validationErrors.name ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${validationErrors.name ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 placeholder="Your name"
               />
               {validationErrors.name && (
@@ -138,9 +137,8 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${
-                  validationErrors.email ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${validationErrors.email ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 placeholder="your.email@example.com"
               />
               {validationErrors.email && (
@@ -162,9 +160,8 @@ export default function ContactPage() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${
-                  validationErrors.subject ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${validationErrors.subject ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 placeholder="What's this about?"
               />
               {validationErrors.subject && (
@@ -186,9 +183,8 @@ export default function ContactPage() {
                 onChange={handleChange}
                 required
                 rows={6}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none ${
-                  validationErrors.message ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none ${validationErrors.message ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 placeholder="Your message..."
               />
               {validationErrors.message && (
@@ -198,7 +194,7 @@ export default function ContactPage() {
 
             {submitStatus === 'success' && (
               <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                Message sent successfully! We'll get back to you soon.
+                Message sent successfully! We&apos;ll get back to you soon.
               </div>
             )}
 

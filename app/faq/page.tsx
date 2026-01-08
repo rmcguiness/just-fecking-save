@@ -45,14 +45,13 @@ export default function FAQPage() {
                   </h3>
                   <p className="leading-relaxed text-gray-800">
                     No. We do not have a database for user transactions. The analysis results live
-                    in your browser's localStorage and auto-delete after 48 hours.
+                    in your browser&apos;s localStorage and auto-delete after 48 hours.
                   </p>
                 </div>
                 <div>
                   <h3 className="font-bold text-black mb-2">Who can see my transactions?</h3>
                   <p className="leading-relaxed text-gray-800">
-                    Your CSVs go directly to Claude (Anthropic's AI) for analysis — we never see or
-                    store your transactions. Results exist only in your browser's local storage.
+                    Results exist only in your browser&apos;s local storage.
                   </p>
                 </div>
               </div>
@@ -76,10 +75,10 @@ export default function FAQPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-black mb-2">
-                    What if I don't save more than $5?
+                    What if I don&apos;t save more than $5?
                   </h3>
                   <p className="leading-relaxed text-gray-800">
-                    If Just Cancel does not pay for itself, you shouldn't pay for it. If you can't
+                    If Just Cancel does not pay for itself, you shouldn&apos;t pay for it. If you can&apos;t
                     find more than $5 in yearly savings, please send us an email at{' '}
                     <a
                       href="mailto:hello@justcancel.io"
@@ -108,7 +107,7 @@ export default function FAQPage() {
                   </h3>
                   <p className="leading-relaxed text-gray-800">
                     We find them; you cancel them. We give you a complete list of all your
-                    subscriptions with direct links to each service's cancel page — one click away.
+                    subscriptions with direct links to each service&apos;s cancel page — one click away.
                   </p>
                 </div>
                 <div>
@@ -117,7 +116,7 @@ export default function FAQPage() {
                   </h3>
                   <p className="leading-relaxed text-gray-800">
                     Just your 2-3 most recent months of transaction history. Do not upload more
-                    than 3 months, it won't improve the quality of the results.
+                    than 3 months, it won&apos;t improve the quality of the results.
                   </p>
                 </div>
                 <div>

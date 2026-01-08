@@ -59,7 +59,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-black mb-4">Refunds</h2>
               <p className="leading-relaxed">
-                If the service doesn't work for you (e.g., we couldn't identify any subscriptions
+                If the service doesn&apos;t work for you (e.g., we couldn&apos;t identify any subscriptions
                 from your CSV), email{' '}
                 <a
                   href="mailto:hello@justcancel.io"
@@ -73,7 +73,7 @@ export default function TermsPage() {
 
             {/* What We Don't Guarantee */}
             <section>
-              <h2 className="text-2xl font-bold text-black mb-4">What We Don't Guarantee</h2>
+              <h2 className="text-2xl font-bold text-black mb-4">What We Don&apos;t Guarantee</h2>
               <ul className="space-y-3 list-disc list-inside leading-relaxed">
                 <li>
                   <strong>Accuracy:</strong> AI analysis may miss subscriptions or misidentify
@@ -81,10 +81,10 @@ export default function TermsPage() {
                 </li>
                 <li>
                   <strong>Cancel Links:</strong> We provide links to cancellation pages, but we
-                  can't guarantee they'll work or that services haven't changed their process.
+                  can&apos;t guarantee they&apos;ll work or that services haven&apos;t changed their process.
                 </li>
                 <li>
-                  <strong>Savings:</strong> We show what you're spending, not what you'll save.
+                  <strong>Savings:</strong> We show what you&apos;re spending, not what you&apos;ll save.
                   Actual savings depend on what you choose to cancel.
                 </li>
               </ul>
@@ -96,7 +96,7 @@ export default function TermsPage() {
               <ul className="space-y-3 list-disc list-inside leading-relaxed">
                 <li>Upload only your own statements</li>
                 <li>Verify subscription information before taking action</li>
-                <li>Don't abuse the service (rate limits apply)</li>
+                <li>Don&apos;t abuse the service (rate limits apply)</li>
               </ul>
             </section>
 
@@ -104,8 +104,8 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-black mb-4">Limitation of Liability</h2>
               <p className="leading-relaxed">
-                Just Cancel is provided 'as is' without warranties. We're not responsible for any
-                actions you take based on our analysis, including canceling services you didn't mean
+                Just Cancel is provided &apos;as is&apos; without warranties. We&apos;re not responsible for any
+                actions you take based on our analysis, including canceling services you didn&apos;t mean
                 to cancel. Our liability is limited to the amount you paid for the service ($5).
               </p>
             </section>

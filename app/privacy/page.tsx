@@ -37,8 +37,8 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold text-black mb-4">The Short Version</h2>
               <p className="leading-relaxed">
-                <strong>We don't store your financial data.</strong> Your statements are analyzed
-                and immediately discarded. Results are stored only in your browser's{' '}
+                <strong>We don&apos;t store your financial data.</strong> Your statements are analyzed
+                and immediately discarded. Results are stored only in your browser&apos;s{' '}
                 <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono">
                   localStorage
                 </code>
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
                   number.
                 </li>
                 <li>
-                  <strong>Email:</strong> Stored for receipts and support. That's it.
+                  <strong>Email:</strong> Stored for receipts and support. That&apos;s it.
                 </li>
               </ul>
             </section>
@@ -129,7 +129,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold text-black mb-4">No Tracking</h2>
               <p className="leading-relaxed">
-                We don't use cookies for tracking. No Google Analytics. No Facebook Pixel. No
+                We don&apos;t use cookies for tracking. No Google Analytics. No Facebook Pixel. No
                 retargeting. Vercel Analytics may be used for basic page view counts (no personal
                 data).
               </p>
