@@ -73,7 +73,7 @@ function formatCurrency(amount: number): string {
   }).format(amount);
 }
 
-function truncateDescription(description: string): string {
+function truncateDescription(description: string): { text: string; isTruncated: boolean } {
   let spaceCount = 0;
   let truncateIndex = -1;
 
@@ -88,16 +88,17 @@ function truncateDescription(description: string): string {
   }
 
   if (truncateIndex !== -1) {
-    return description.substring(0, truncateIndex) + '...';
+    return { text: description.substring(0, truncateIndex), isTruncated: true };
   }
 
-  return description;
+  return { text: description, isTruncated: false };
 }
 
 export default function ResultsDisplay({ data, processingTime, onReset }: ResultsDisplayProps) {
   const visibleServices = data.services.slice(0, 7);
   const remainingCount = Math.max(0, data.services.length - 7);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Set<string>>(new Set());
   const [chartType, setChartType] = useState<'line' | 'bar'>('line');
   const [categoryChartTypes, setCategoryChartTypes] = useState<Record<string, 'line' | 'bar'>>({});
 
@@ -501,13 +502,32 @@ export default function ResultsDisplay({ data, processingTime, onReset }: Result
                         : 'text-red-500'
                       : data.accountType === 'credit' ? 'text-red-500' : 'text-green-500';
 
+                    const descriptionKey = `${category}-${idx}-${transaction.description}`;
+                    const isDescriptionExpanded = expandedDescriptions.has(descriptionKey);
+                    const { text: truncatedText, isTruncated } = truncateDescription(transaction.description);
+                    const displayText = isDescriptionExpanded ? transaction.description : truncatedText;
+
                     return (
                       <div
                         key={idx}
                         className="flex justify-between items-center text-sm text-gray-600 py-2 border-b border-gray-200 last:border-b-0"
                       >
-                        <span className="truncate flex-1">{truncateDescription(transaction.description)}</span>
-                        <span className={`ml-4 font-medium ${amountColor}`}>
+                        <span className="flex-1 flex items-center gap-1">
+                          <span className={isDescriptionExpanded ? '' : 'truncate'}>{displayText}</span>
+                          {isTruncated && !isDescriptionExpanded && (
+                            <button
+                              onClick={() => {
+                                const newExpanded = new Set(expandedDescriptions);
+                                newExpanded.add(descriptionKey);
+                                setExpandedDescriptions(newExpanded);
+                              }}
+                              className="text-xs text-gray-400 hover:text-gray-600 transition-colors cursor-pointer flex-shrink-0"
+                            >
+                              (show)
+                            </button>
+                          )}
+                        </span>
+                        <span className={`ml-4 font-medium flex-shrink-0 ${amountColor}`}>
                           {formatCurrency(transaction.amount)}
                         </span>
                       </div>
