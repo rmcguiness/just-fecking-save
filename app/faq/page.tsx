@@ -115,8 +115,7 @@ export default function FAQPage() {
                     How much transaction history do I need?
                   </h3>
                   <p className="leading-relaxed text-gray-800">
-                    Just your 2-3 most recent months of transaction history. Do not upload more
-                    than 3 months, it won&apos;t improve the quality of the results.
+                    Just your most recent months of transaction history.
                   </p>
                 </div>
                 <div>

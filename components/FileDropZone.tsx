@@ -92,7 +92,7 @@ export default function FileDropZone({ onFileProcessed, isProcessing }: FileDrop
           className="flex flex-col items-center justify-center cursor-pointer w-full h-full p-12"
         >
           <p className="text-xl font-bold text-black mb-3 text-center">
-            Drop your last 2-3 months of statements
+            Drop your last months of Credit Card or Checking Account statements
           </p>
           <p className="text-base text-black text-center">
             PDF or CSV files from any bank • Takes under 90 seconds
