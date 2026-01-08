@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         <p><strong>Message:</strong></p>
         <p>${sanitizedMessage.replace(/\n/g, '<br>')}</p>
       `,
-			replyTo: email.trim(), // Use original email for reply-to (Resend will validate)
+			reply_to: email.trim(), // Use original email for reply-to (Resend will validate)
 		});
 
 		if (error) {
@@ -61,4 +61,3 @@ export async function POST(request: NextRequest) {
 		);
 	}
 }
-
