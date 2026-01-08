@@ -36,14 +36,14 @@ const SERVICE_COLORS: Record<string, string> = {
 const CATEGORY_COLORS: Record<string, { hex: string; text: string }> = {
   'Streaming': { hex: '#ef4444', text: 'text-red-500' },
   'Food': { hex: '#f59e0b', text: 'text-amber-500' },
-  'Gaming': { hex: '#3b82f6', text: 'text-blue-500' },
+  'Gaming': { hex: '#ef4444', text: 'text-red-500' },
   'Software': { hex: '#8b5cf6', text: 'text-purple-500' },
   'Cloud Services': { hex: '#06b6d4', text: 'text-cyan-500' },
   'Productivity': { hex: '#10b981', text: 'text-emerald-500' },
   'AI Tools': { hex: '#ec4899', text: 'text-pink-500' },
   'Development': { hex: '#f97316', text: 'text-orange-500' },
   'Communication': { hex: '#6366f1', text: 'text-indigo-500' },
-  'Crypto': { hex: '#eab308', text: 'text-yellow-500' },
+  'Crypto': { hex: '#3b82f6', text: 'text-blue-500' },
   'Other': { hex: '#6b7280', text: 'text-gray-500' },
   'Income': { hex: '#22c55e', text: 'text-green-500' },
 };
@@ -71,6 +71,27 @@ function formatCurrency(amount: number): string {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
+}
+
+function truncateDescription(description: string): string {
+  let spaceCount = 0;
+  let truncateIndex = -1;
+
+  for (let i = 0; i < description.length; i++) {
+    if (description[i] === ' ') {
+      spaceCount++;
+      if (spaceCount === 2) {
+        truncateIndex = i;
+        break;
+      }
+    }
+  }
+
+  if (truncateIndex !== -1) {
+    return description.substring(0, truncateIndex) + '...';
+  }
+
+  return description;
 }
 
 export default function ResultsDisplay({ data, processingTime, onReset }: ResultsDisplayProps) {
@@ -256,9 +277,9 @@ export default function ResultsDisplay({ data, processingTime, onReset }: Result
         {/* Header with total */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-black mb-2">
-            {formatCurrency(data.total)} this month
+            {formatCurrency(data.total)}
           </h1>
-          <p className="text-gray-600 text-sm">found so far</p>
+          <p className="text-gray-600 text-lg">this month&apos;s spending</p>
         </div>
 
         {/* Service tags */}
@@ -272,9 +293,9 @@ export default function ResultsDisplay({ data, processingTime, onReset }: Result
             <div
               key={service}
               className={`
-                px-4 py-1.5 rounded-full text-sm font-medium text-white
+                px-4 py-1.5 rounded-full text-sm font-medium text-blue-500
                 flex items-center gap-1.5
-                ${SERVICE_COLORS[service] || 'bg-gray-500'}
+                ${SERVICE_COLORS[service] || 'border border-gray-500'}
               `}
             >
               {SERVICE_ICONS[service] && (
@@ -471,13 +492,13 @@ export default function ResultsDisplay({ data, processingTime, onReset }: Result
                   </div>
                 )}
 
-                <div className="space-y-2">
+                <div className="space-y-0">
                   {visibleTransactions.map((transaction, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between items-center text-sm text-gray-600"
+                      className="flex justify-between items-center text-sm text-gray-600 py-2 border-b border-gray-200 last:border-b-0"
                     >
-                      <span className="truncate flex-1">{transaction.description}</span>
+                      <span className="truncate flex-1">{truncateDescription(transaction.description)}</span>
                       <span className="ml-4 font-medium text-red-500">
                         {formatCurrency(transaction.amount)}
                       </span>
