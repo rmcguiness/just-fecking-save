@@ -29,7 +29,10 @@ function parseAmount(amount: string | number): number {
 	return parseFloat(cleaned) || 0;
 }
 
-function processCSV(file: File): Promise<ProcessedData> {
+function processCSV(
+	file: File,
+	accountType: 'checking' | 'credit'
+): Promise<ProcessedData> {
 	return new Promise((resolve, reject) => {
 		Papa.parse(file, {
 			header: true,
@@ -79,7 +82,7 @@ function processCSV(file: File): Promise<ProcessedData> {
 						}
 					});
 
-					const processed = organizeData(transactions);
+					const processed = organizeData(transactions, accountType);
 					resolve(processed);
 				} catch (error) {
 					reject(error);
@@ -90,9 +93,13 @@ function processCSV(file: File): Promise<ProcessedData> {
 	});
 }
 
-async function processPDF(file: File): Promise<ProcessedData> {
+async function processPDF(
+	file: File,
+	accountType: 'checking' | 'credit'
+): Promise<ProcessedData> {
 	const formData = new FormData();
 	formData.append('file', file);
+	formData.append('accountType', accountType);
 
 	const response = await fetch('/api/process-pdf', {
 		method: 'POST',
@@ -106,14 +113,16 @@ async function processPDF(file: File): Promise<ProcessedData> {
 	return response.json();
 }
 
-function organizeData(transactions: Transaction[]): ProcessedData {
+function organizeData(
+	transactions: Transaction[],
+	accountType: 'checking' | 'credit'
+): ProcessedData {
 	const categories: Record<string, Transaction[]> = {};
 	const services = new Set<string>();
 
 	transactions.forEach((transaction) => {
 		// Separate positive transactions into Income category
-		const finalCategory =
-			transaction.amount > 0 ? 'Income' : transaction.category;
+		const finalCategory = transaction.category;
 
 		if (!categories[finalCategory]) {
 			categories[finalCategory] = [];
@@ -140,10 +149,14 @@ function organizeData(transactions: Transaction[]): ProcessedData {
 		categories,
 		services: Array.from(services),
 		numberOfTransactions: transactions.length,
+		accountType,
 	};
 }
 
-export async function processFile(file: File): Promise<ProcessedData> {
+export async function processFile(
+	file: File,
+	accountType: 'checking' | 'credit'
+): Promise<ProcessedData> {
 	// Validate file before processing
 	const validation = validateFile(file);
 	if (!validation.valid) {
@@ -151,9 +164,9 @@ export async function processFile(file: File): Promise<ProcessedData> {
 	}
 
 	if (file.type === 'text/csv' || file.name.endsWith('.csv')) {
-		return processCSV(file);
+		return processCSV(file, accountType);
 	} else if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-		return processPDF(file);
+		return processPDF(file, accountType);
 	} else {
 		throw new Error('Unsupported file type. Please upload a CSV or PDF file.');
 	}

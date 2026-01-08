@@ -34,13 +34,13 @@ export default function Home() {
     fetchStarCount();
   }, []);
 
-  const handleFileProcessed = async (file: File) => {
+  const handleFileProcessed = async (file: File, accountType: 'checking' | 'credit') => {
     setIsProcessing(true);
     setError(null);
     const startTime = Date.now();
 
     try {
-      const data = await processFile(file);
+      const data = await processFile(file, accountType);
       const endTime = Date.now();
       setProcessingTime((endTime - startTime) / 1000);
       setProcessedData(data);

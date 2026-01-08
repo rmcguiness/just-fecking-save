@@ -493,17 +493,26 @@ export default function ResultsDisplay({ data, processingTime, onReset }: Result
                 )}
 
                 <div className="space-y-0">
-                  {visibleTransactions.map((transaction, idx) => (
-                    <div
-                      key={idx}
-                      className="flex justify-between items-center text-sm text-gray-600 py-2 border-b border-gray-200 last:border-b-0"
-                    >
-                      <span className="truncate flex-1">{truncateDescription(transaction.description)}</span>
-                      <span className="ml-4 font-medium text-red-500">
-                        {formatCurrency(transaction.amount)}
-                      </span>
-                    </div>
-                  ))}
+                  {visibleTransactions.map((transaction, idx) => {
+                    const isNegative = transaction.amount < 0;
+                    const amountColor = isNegative
+                      ? data.accountType === 'credit'
+                        ? 'text-green-500'
+                        : 'text-red-500'
+                      : data.accountType === 'credit' ? 'text-red-500' : 'text-green-500';
+
+                    return (
+                      <div
+                        key={idx}
+                        className="flex justify-between items-center text-sm text-gray-600 py-2 border-b border-gray-200 last:border-b-0"
+                      >
+                        <span className="truncate flex-1">{truncateDescription(transaction.description)}</span>
+                        <span className={`ml-4 font-medium ${amountColor}`}>
+                          {formatCurrency(transaction.amount)}
+                        </span>
+                      </div>
+                    );
+                  })}
                   {transactions.length > 5 && (
                     <button
                       onClick={() => toggleCategory(category)}

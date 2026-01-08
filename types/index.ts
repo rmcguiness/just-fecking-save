@@ -12,4 +12,5 @@ export interface ProcessedData {
 	categories: Record<string, Transaction[]>;
 	services: string[];
 	numberOfTransactions: number;
+	accountType: 'checking' | 'credit';
 }

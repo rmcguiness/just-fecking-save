@@ -34,14 +34,17 @@ function parseAmount(amount: string | number): number {
 	return parseFloat(cleaned) || 0;
 }
 
-function organizeData(transactions: Transaction[]): ProcessedData {
+function organizeData(
+	transactions: Transaction[],
+	accountType: 'checking' | 'credit'
+): ProcessedData {
 	const categories: Record<string, Transaction[]> = {};
 	const services = new Set<string>();
 
 	// Only process expenses (negative amounts), filter out positive amounts
-	const expenseTransactions = transactions.filter((t) => t.amount < 0);
+	// const expenseTransactions = transactions.filter((t) => t.amount < 0);
 
-	expenseTransactions.forEach((transaction) => {
+	transactions.forEach((transaction) => {
 		const category = transaction.category;
 
 		if (!categories[category]) {
@@ -55,17 +58,18 @@ function organizeData(transactions: Transaction[]): ProcessedData {
 	});
 
 	// Calculate totals - only count expenses for yearly total
-	const monthlyExpenses = expenseTransactions.reduce(
+	const monthlyExpenses = transactions.reduce(
 		(sum, t) => sum + Math.abs(t.amount),
 		0
 	);
 
 	return {
 		total: monthlyExpenses,
-		transactions: expenseTransactions,
+		transactions,
 		categories,
 		services: Array.from(services),
-		numberOfTransactions: expenseTransactions.length,
+		numberOfTransactions: transactions.length,
+		accountType,
 	};
 }
 
@@ -128,7 +132,7 @@ function extractChaseTransactions(text: string): Transaction[] {
 		// Process both positive (income) and negative (expenses) transactions
 		// Keep the sign of the amount
 		const service = detectService(cleanedDescription);
-		const category = amount > 0 ? 'Income' : detectCategory(cleanedDescription);
+		const category = detectCategory(cleanedDescription);
 
 		transactions.push({
 			date,
@@ -146,6 +150,8 @@ export async function POST(request: NextRequest) {
 	try {
 		const formData = await request.formData();
 		const file = formData.get('file') as File;
+		const accountType =
+			(formData.get('accountType') as 'checking' | 'credit') || 'checking';
 
 		if (!file) {
 			return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -198,8 +204,7 @@ export async function POST(request: NextRequest) {
 						if (description.length > 3) {
 							const date = dates && dates[0] ? dates[0] : '';
 							const service = detectService(description);
-							const category =
-								amount > 0 ? 'Income' : detectCategory(description);
+							const category = detectCategory(description);
 
 							transactions.push({
 								date,
@@ -214,7 +219,7 @@ export async function POST(request: NextRequest) {
 			});
 		}
 
-		const processed = organizeData(transactions);
+		const processed = organizeData(transactions, accountType);
 		return NextResponse.json(processed);
 	} catch (error) {
 		console.error('Error processing PDF:', error);

@@ -2,7 +2,13 @@
 export const SERVICE_KEYWORDS: Record<string, string[]> = {
 	Netflix: ['netflix'],
 	Spotify: ['spotify'],
+	Amazon: ['amazon', 'amazon prime'],
+	BestBuy: ['best buy'],
+	Walmart: ['walmart'],
+	Target: ['target'],
+	Costco: ['costco'],
 	PlayStation: ['playstation', 'psn', 'play station'],
+	Xbox: ['xbox', 'xbox live'],
 	Discord: ['discord'],
 	'ChatGPT Plus': ['chatgpt', 'openai', 'chat gpt'],
 	Replit: ['replit'],
@@ -39,6 +45,10 @@ export const CATEGORY_KEYWORDS: Record<string, string[]> = {
 		'prime',
 		'youtube',
 		'apple tv',
+		'amazon prime',
+		'hbo max',
+		'hbo',
+		'hbo go',
 	],
 	Food: [
 		'mcdonalds',
@@ -71,7 +81,14 @@ export const CATEGORY_KEYWORDS: Record<string, string[]> = {
 		'taco bell',
 		'wendys',
 	],
-	Gaming: ['playstation', 'xbox', 'steam', 'nintendo', 'epic games'],
+	Gaming: [
+		'playstation',
+		'xbox',
+		'steam',
+		'nintendo',
+		'epic games',
+		'microsoft',
+	],
 	Software: ['adobe', 'microsoft', 'office', 'creative cloud'],
 	'Cloud Services': [
 		'aws',
@@ -86,6 +103,16 @@ export const CATEGORY_KEYWORDS: Record<string, string[]> = {
 	Development: ['github', 'gitlab', 'replit', 'codesandbox'],
 	Communication: ['discord', 'zoom', 'teams'],
 	Crypto: ['coinbase', 'binance', 'kraken', 'gemini', 'crypto'],
+	Shopping: [
+		'amazon',
+		'best buy',
+		'target',
+		'walmart',
+		'costco',
+		"kohl's",
+		'bed bath & beyond',
+		'home depot',
+	],
 	Other: [],
 };
 
@@ -99,4 +126,3 @@ export const MAX_NAME_LENGTH = 100;
 export const MAX_EMAIL_LENGTH = 254;
 export const MAX_SUBJECT_LENGTH = 200;
 export const MAX_MESSAGE_LENGTH = 5000;
-
